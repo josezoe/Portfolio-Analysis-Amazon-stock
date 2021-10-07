@@ -136,3 +136,16 @@ ES(AMZN, p = 0.05)
 # ES        -1        -1       -1         -1          NA            -1
 
 
+library(tibbletime)
+roll_mean_50=rollify(mean,window=50)
+roll_mean_200=rollify(mean,window=200)
+
+mutate(amzn50=roll_mean_50(AMZN)) %>% 
+  mutate(amzn200=roll_mean_200(AMZN)) %>% 
+  na.omit() %>% 
+  print()
+amzn50=roll_mean_50(AMZN$AMZN.Close)
+amzn50
+amzn200=roll_mean_200(AMZN$AMZN.Close)
+amzn200
+tail(amzn50)
